@@ -5,18 +5,18 @@ const readLine = require('readline');
 // Build the connection string and set the connection timeout.
 // timeout is in milliseconds.
 const connect = () => {
-    setTimeout(() => mongoose.connect(dbURI, {
+        setTimeout(() => mongoose.connect(dbURI, {
     }), 1000);
 }
 // Monitor connection events
 mongoose.connection.on('connected', () => {
- console.log(`Mongoose connected to ${dbURI}`);
+    console.log(`Mongoose connected to ${dbURI}`);
 });
 mongoose.connection.on('error', err => {
- console.log('Mongoose connection error: ', err);
+    console.log('Mongoose connection error: ', err);
 });
 mongoose.connection.on('disconnected', () => {
- console.log('Mongoose disconnected');
+    console.log('Mongoose disconnected');
 });
 // Windows specific listner
 if(process.platform === 'win32'){
@@ -31,7 +31,7 @@ if(process.platform === 'win32'){
 // Configure for Graceful Shutdown
 const gracefulShutdown = (msg) => {
     mongoose.connection.close(() => {
- console.log(`Mongoose disconnected through ${msg}`);
+    console.log(`Mongoose disconnected through ${msg}`);
      });
 };
 // Event Listeners to process graceful shutdowns
